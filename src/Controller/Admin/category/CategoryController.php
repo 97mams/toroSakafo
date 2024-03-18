@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin', name: '.admin')]
+#[Route('/admin', name: 'admin.')]
 class CategoryController extends AbstractController
 {
 
@@ -54,7 +54,7 @@ class CategoryController extends AbstractController
         return $this->render('admin/categories/edit.html.twig');
     }
 
-    #[Route('/categorie/suppresion/{id}', name: 'category.delete', requirements: 'DELETE')]
+    #[Route('/categorie/suppression/{id}', name: 'category.delete')]
     public function delete(Category $category, EntityManagerInterface $em): RedirectResponse
     {
         $em->remove($category);
