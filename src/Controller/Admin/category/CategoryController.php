@@ -51,7 +51,9 @@ class CategoryController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('admin.category.index');
         }
-        return $this->render('admin/categories/edit.html.twig');
+        return $this->render('admin/categories/edit.html.twig', [
+            'formCategory' => $formCategory
+        ]);
     }
 
     #[Route('/categorie/suppression/{id}', name: 'category.delete')]

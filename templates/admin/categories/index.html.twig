@@ -4,6 +4,29 @@
 {% endblock %}
 
 {% block body %}
-	<h1>hello dear</h1>
+	<button class="btn btn-primary btn-sm my-3">Créer catégorie</button>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for category in categories %}
+				<tr>
+					<td>{{ category.name }}</td>
+					<td class="d-flex gap-2">
+						<a href="{{ path('admin.category.edit',{id: category.id}) }}" class="btn btn-primary btn-sm">Editer</a>
+						<form action="{{ path('admin.category.delete', {id: category.id}) }}" method="post">
+							<input type="hidden" name="_methods" value="DELETE">
+							<button class="btn btn-danger btn-sm">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
