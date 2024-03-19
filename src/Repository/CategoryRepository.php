@@ -21,6 +21,15 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function FunctionName(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('NEW App\\DTO\\CategoryWithDTO(c.id, c.name, COUNT(c.id)')
+            ->leftJoin('c.recipes', 'r')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Category[] Returns an array of Category objects
     //     */
