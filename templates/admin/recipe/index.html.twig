@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste recettes
+{% endblock %}
+
+{% block body %}
+	<a href="path('admin.recipe.create')" class="btn btn-primary btn-sm my-3">Créer une recette</a>
+
+	<table class="table table-striped ">
+		<thead>
+			<tr>
+				<td>Nom</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for recipe in recipes %}
+				<tr>
+					<td>{{ recipe.title }}</td>
+					<td>
+						<a href="{{ path('admin.recipe.edit', { id: recipe.id }) }}" class="btn btn-primary btn-sm">Editer</a>
+						<form action="{{ path('admin.recipe.delete') }}" method="post">
+							<input type="hidden" name="_method" value="DELETE">
+							<button class="btn btn-primary btn-sm">Suppression</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

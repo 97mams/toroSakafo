@@ -19,12 +19,12 @@ class RecipeController extends AbstractController
     {
         $recipes = $repository->findAll();
 
-        return $this->render('admin/recipe/recipe/index.html.twig', [
+        return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);
     }
 
-    #[Route('/recipe/ajout', name: 'recipe.create', requirements: ['GET', 'POST'])]
+    #[Route('/recipe/ajout', name: 'recipe.create')]
     public function create(EntityManagerInterface $em, Request $request): Response
     {
         $recipe = new Recipe();
@@ -37,12 +37,12 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('admin.recipe.index');
         }
 
-        return $this->render('admin/recipe/recipe/index.html.twig', [
+        return $this->render('admin/recipe/create.html.twig', [
             '$form' => $formRecipe,
         ]);
     }
 
-    #[Route('/recipe/edit/{id}', name: 'recipe.edit', requirements: ['GET', 'POST'])]
+    #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
     public function edit(Recipe $recipe, EntityManagerInterface $em, Request $request): Response
     {
         $formRecipe = $this->createForm(RecipeFormRequestType::class, $recipe);
@@ -54,12 +54,12 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('admin.recipe.index');
         }
 
-        return $this->render('admin/recipe/recipe/index.html.twig', [
+        return $this->render('admin/recipe/recipe/edit.html.twig', [
             '$form' => $formRecipe,
         ]);
     }
 
-    #[Route('/recipe/suppression', name: 'recipe.delete', requirements: ['DELETE'])]
+    #[Route('/recipe/suppression', name: 'recipe.delete')]
     public function delete(Recipe $recipe, EntityManagerInterface $em)
     {
         $em->remove($recipe);
