@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/ajout', name: 'category.create')]
+    #[Route('/categorie/ajout', name: 'category.create', methods: ['GET', 'POST'])]
     public function create(EntityManagerInterface $em, Request $request): Response
     {
         $category = new Category();
