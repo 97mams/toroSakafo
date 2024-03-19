@@ -24,11 +24,12 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      *@return CategoryWithDTO[]
      */
-    public function FunctionName(): array
+    public function findWithCount(): array
     {
         return $this->createQueryBuilder('c')
-            ->select('NEW App\\DTO\\CategoryWithDTO(c.id, c.name, COUNT(c.id)')
+            ->select('NEW App\\DTO\\CategoryWithDTO(c.id, c.name, COUNT(c.id))')
             ->leftJoin('c.recipes', 'r')
+            ->groupBy('c.id')
             ->getQuery()
             ->getResult();
     }

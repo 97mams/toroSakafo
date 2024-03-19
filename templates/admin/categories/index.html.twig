@@ -10,13 +10,15 @@
 		<thead>
 			<tr>
 				<td>Name</td>
-				<td>Actions</td>
+				<td>Recettes</td>
+				<td style="width: 200px">Actions</td>
 			</tr>
 		</thead>
 		<tbody>
 			{% for category in categories %}
 				<tr>
 					<td>{{ category.name }}</td>
+					<td>{{ category.count}}</td>
 					<td class="d-flex gap-2">
 						<a href="{{ path('admin.category.edit',{id: category.id}) }}" class="btn btn-primary btn-sm">Editer</a>
 						<form action="{{ path('admin.category.delete', {id: category.id}) }}" method="post">

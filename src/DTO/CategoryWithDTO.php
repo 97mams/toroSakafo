@@ -6,9 +6,9 @@ class CategoryWithDTO
 {
 
     public function __construct(
-        private readonly int $id,
-        private readonly string $name,
-        private readonly int $count
+        public readonly int $id,
+        public readonly string $name,
+        public readonly int $count
     ) {
     }
 }
