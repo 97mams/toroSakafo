@@ -38,7 +38,7 @@ class RecipeController extends AbstractController
         }
 
         return $this->render('admin/recipe/create.html.twig', [
-            '$formRecipe' => $formRecipe
+            'formRecipe' => $formRecipe
         ]);
     }
 

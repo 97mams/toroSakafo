@@ -17,11 +17,11 @@
 			{% for recipe in recipes %}
 				<tr>
 					<td>{{ recipe.title }}</td>
-					<td>
+					<td class="d-flex gap-2">
 						<a href="{{ path('admin.recipe.edit', { id: recipe.id }) }}" class="btn btn-primary btn-sm">Editer</a>
 						<form action="{{ path('admin.recipe.delete') }}" method="post">
 							<input type="hidden" name="_method" value="DELETE">
-							<button class="btn btn-primary btn-sm">Suppression</button>
+							<button class="btn btn-danger btn-sm">Suppression</button>
 						</form>
 					</td>
 				</tr>

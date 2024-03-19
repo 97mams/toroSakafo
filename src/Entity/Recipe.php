@@ -32,6 +32,9 @@ class Recipe
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     private ?Category $category = null;
 
+    #[ORM\Column]
+    private ?int $duration = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -111,6 +114,18 @@ class Recipe
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(int $duration): static
+    {
+        $this->duration = $duration;
 
         return $this;
     }

@@ -7,6 +7,8 @@ use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,11 +28,14 @@ class RecipeFormRequestType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => 'Contenue'
             ])
+            ->add('duration', NumberType::class, [
+                'label' => 'Durrée'
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
-            ->add('save', ButtonType::class, [
+            ->add('save', SubmitType::class, [
                 'label' => "Enregister"
             ]);
     }
