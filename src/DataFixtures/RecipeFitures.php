@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Recipe;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -20,7 +21,16 @@ class RecipeFitures extends Fixture
     {
         $faker = Factory::create('fr');
         $faker->addProvider(new Restaurant($faker));
-        for ($i = 0; $i < 10; $i++) {
+        $categories = ['Dessert', 'Plat chaud', 'Entrée', 'Gôuter'];
+        foreach ($categories as $c) {
+            $category = (new Category())
+                ->setName($c)
+                ->setSlug(strtolower($this->slugger->slug($c)))
+                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+            $manager->persist($category);
+            $this->addReference($c, $category);
+        }
+        for ($i = 0; $i < 30; $i++) {
             $name = $faker->foodName();
             $recipe = (new Recipe)
                 ->setTitle($name)
@@ -28,6 +38,7 @@ class RecipeFitures extends Fixture
                 ->setUpdatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()))
                 ->setContent($faker->paragraphs(10, true))
+                ->setCategory($this->getReference($faker->randomElement($categories)))
                 ->setDuration($faker->numberBetween(2, 60));
             $manager->persist($recipe);
         }
