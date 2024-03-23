@@ -41,6 +41,12 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v6.3.0"
     },
+    "php-flasher/flasher-symfony": {
+        "version": "v1.15.14"
+    },
+    "php-flasher/flasher-toastr-symfony": {
+        "version": "v1.15.14"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

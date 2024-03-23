@@ -15,4 +15,6 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
+    Flasher\Symfony\FlasherSymfonyBundle::class => ['all' => true],
+    Flasher\Toastr\Symfony\FlasherToastrSymfonyBundle::class => ['all' => true],
 ];

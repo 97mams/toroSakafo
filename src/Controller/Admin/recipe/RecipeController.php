@@ -17,7 +17,7 @@ class RecipeController extends AbstractController
     #[Route('/recipe', name: 'recipe.index')]
     public function index(RecipeRepository $repository): Response
     {
-        $recipes = $repository->findAll();
+        $recipes = $repository->findWithCategory();
 
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
@@ -51,19 +51,22 @@ class RecipeController extends AbstractController
             $em->persist($recipe);
             $em->flush();
 
+            toastr()->addSuccess('Your account has been restored.');
             return $this->redirectToRoute('admin.recipe.index');
         }
 
-        return $this->render('admin/recipe/recipe/edit.html.twig', [
-            '$form' => $formRecipe,
+        return $this->render('admin/recipe/edit.html.twig', [
+            'form' => $formRecipe,
         ]);
     }
 
-    #[Route('/recipe/suppression', name: 'recipe.delete')]
+    #[Route('/recipe/suppression/{id}', name: 'recipe.delete')]
     public function delete(Recipe $recipe, EntityManagerInterface $em)
     {
         $em->remove($recipe);
         $em->flush();
+
+        $this->addFlash('success', 'la recette a été bien supprimer');
 
         return $this->redirectToRoute('admin.recipe.index');
     }
