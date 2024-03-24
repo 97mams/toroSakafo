@@ -24,7 +24,7 @@ class RecipeRepository extends ServiceEntityRepository
     public function findWithCategory(): array
     {
         return $this->createQueryBuilder('r')
-            ->select('r.id', 'r.title', 'c.name')
+            ->select('r.id', 'r.slug', 'r.title', 'c.name')
             ->leftJoin('r.category', 'c')
             ->getQuery()
             ->getResult();

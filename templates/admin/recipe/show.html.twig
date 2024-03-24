@@ -6,13 +6,19 @@
 
 {% block body %}
 
-	<div class="row">
-		<div class="col-md-8">
+	<div class="row mt-5">
+		<div class="col-md-8 m-auto">
 			<h2>{{ recipe.title }}</h2>
+			<h3>Comment preparer la
+				{{ recipe.title }}
+				?</h3>
 			<p>{{ recipe.content }}</p>
-			<p class="text-primary">
-				{{ recipe.duration }}
-				min</p>
+			<p>
+				<span class="text-primary">{{ recipe.duration }}
+					min</span>
+				pour preparer ça.
+			</p>
+			<a href="{{path('admin.recipe.index')}}">Retour</a>
 		</div>
 	</div>
 

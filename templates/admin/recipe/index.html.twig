@@ -17,7 +17,9 @@
 		<tbody>
 			{% for recipe in recipes %}
 				<tr>
-					<td>{{ recipe.title }}</td>
+					<td>
+						<a href="{{ path('admin.recipe.show', {slug: recipe.slug, id: recipe.id }) }}">{{ recipe.title }}</a>
+					</td>
 					<td>{{ recipe.name }}</td>
 					<td class="d-flex gap-2">
 						<a href="{{ path('admin.recipe.edit', { id: recipe.id }) }}" class="btn btn-primary btn-sm">Editer</a>

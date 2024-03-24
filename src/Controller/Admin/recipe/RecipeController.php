@@ -70,4 +70,11 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute('admin.recipe.index');
     }
+
+    #[Route('/recipe/{slug}-{id}', name: 'recipe.show', methods: 'GET', requirements: ['id' => '\d+', 'slug' => '[a-z0-9-]+'])]
+    public function show(string $slug, int $id, RecipeRepository $repository): Response
+    {
+        $recipe = $repository->find($id);
+        return $this->render('admin/recipe/show.html.twig', compact('recipe'));
+    }
 }
