@@ -30,6 +30,14 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function paginateRecipe($page, $limit)
+    {
+        return $this->paginator->paginate(
+            $this->createQueryBuilder('r'),
+            $page,
+            $limit
+        );
+    }
     //    /**
     //     * @return Recipe[] Returns an array of Recipe objects
     //     */
