@@ -15,9 +15,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class RecipeController extends AbstractController
 {
     #[Route('/recipe', name: 'recipe.index')]
-    public function index(RecipeRepository $repository): Response
+    public function index(RecipeRepository $repository, Request $request): Response
     {
-        $recipes = $repository->findWithCategory();
+        $page = $request->query->getInt('page', 1);
+        $limit = 8;
+        $recipes = $repository->paginateRecipe($page, $limit);
 
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,

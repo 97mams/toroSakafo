@@ -9,6 +9,7 @@
 	<table class="table table-striped ">
 		<thead>
 			<tr>
+				<td>{{ knp_pagination_sortable(recipes, 'ID', 'r.id')}}</td>
 				<td>Nom</td>
 				<td>Catagorie</td>
 				<td style="width: 200px">Actions</td>
@@ -17,6 +18,9 @@
 		<tbody>
 			{% for recipe in recipes %}
 				<tr>
+					<td>
+						{{ recipe.id }}
+					</td>
 					<td>
 						<a href="{{ path('admin.recipe.show', {slug: recipe.slug, id: recipe.id }) }}">{{ recipe.title }}</a>
 					</td>
@@ -32,4 +36,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	{{ knp_pagination_render(recipes) }}
 {% endblock %}
