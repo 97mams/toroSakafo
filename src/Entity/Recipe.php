@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[UniqueEntity('title')]
+#[UniqueEntity('slug')]
 class Recipe
 {
     #[ORM\Id]
