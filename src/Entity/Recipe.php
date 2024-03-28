@@ -45,6 +45,9 @@ class Recipe
     #[ORM\Column]
     private ?int $duration = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $thumbnail = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -136,6 +139,18 @@ class Recipe
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): static
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }

@@ -26,7 +26,7 @@ class RecipeRepository extends ServiceEntityRepository
     public function findWithCategory(): array
     {
         return $this->createQueryBuilder('r')
-            ->select('r.id', 'r.slug', 'r.title', 'c.name')
+            ->select('r.id', 'r.slug', 'r.title', 'c.name', 'r.thumbnail')
             ->leftJoin('r.category', 'c')
             ->getQuery()
             ->getResult();
@@ -35,7 +35,7 @@ class RecipeRepository extends ServiceEntityRepository
     public function paginateRecipe($page, $limit): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->createQueryBuilder('r')->leftJoin('r.category', 'c')->select('r.id', 'r.title', 'r.slug', '<div class="name"><!--  --></div>'),
+            $this->createQueryBuilder('r')->leftJoin('r.category', 'c')->select('r.id', 'r.title', 'r.slug', 'c.name'),
             $page,
             $limit,
             [

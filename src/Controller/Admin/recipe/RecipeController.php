@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/admin', name: 'admin.')]
 class RecipeController extends AbstractController
@@ -50,10 +51,13 @@ class RecipeController extends AbstractController
         $formRecipe = $this->createForm(RecipeFormRequestType::class, $recipe);
         $formRecipe->handleRequest($request);
         if ($formRecipe->isSubmitted() && $formRecipe->isValid()) {
-            $em->persist($recipe);
+            /** @var UploadedFile $file */
+            $file = $formRecipe->get('thumbnailFile')->getData();
+            $fileName =  $recipe->getId() . '.' . $file->getClientOriginalExtension();
+            $file->move($this->getParameter('kernel.project_dir') . '/public/recette/Images', $fileName);
             $em->flush();
 
-            toastr()->addSuccess('Your account has been restored.');
+            toastr()->addSuccess('votre recette a été bien éditer');
             return $this->redirectToRoute('admin.recipe.index');
         }
 
