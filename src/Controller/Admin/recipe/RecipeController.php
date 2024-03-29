@@ -55,6 +55,7 @@ class RecipeController extends AbstractController
             $file = $formRecipe->get('thumbnailFile')->getData();
             $fileName =  $recipe->getId() . '.' . $file->getClientOriginalExtension();
             $file->move($this->getParameter('kernel.project_dir') . '/public/recette/Images', $fileName);
+            $recipe->setThumbnail($fileName);
             $em->flush();
 
             toastr()->addSuccess('votre recette a été bien éditer');

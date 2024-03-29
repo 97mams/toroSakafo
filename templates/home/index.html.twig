@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}ToroSakafo
+{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+		<div class="col-md-9 m-auto">
+			<div class="row">
+				{% for recipe in recipes %}
+					<div class="col-md-4 mt-3">
+						<div class="card">
+							<img src="/recette/Images/{{ recipe.thumbnail }}" class="card-img-top" alt="{{ recipe.title }}">
+							<div class="card-body">
+								<h5 class="card-title">{{ recipe.title }}</h5>
+								<a href="{{ path('admin.recipe.show', {id:recipe.id, slug: recipe.slug}) }}" class="btn btn-primary">détails</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
