@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-
+	{{ knp_pagination_sortable(recipes, 'Duration', 'r.duration') }}
 	<div class="row">
 		<div class="col-md-9 m-auto">
 			<div class="row">
@@ -19,6 +19,9 @@
 						</div>
 					</div>
 				{% endfor %}
+			</div>
+			<div class="mt-4">
+				{{ knp_pagination_render(recipes) }}
 			</div>
 		</div>
 	</div>

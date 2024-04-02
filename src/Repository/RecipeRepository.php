@@ -35,7 +35,7 @@ class RecipeRepository extends ServiceEntityRepository
     public function paginateRecipe($page, $limit): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->createQueryBuilder('r')->leftJoin('r.category', 'c')->select('r.id', 'r.title', 'r.slug', 'c.name'),
+            $this->createQueryBuilder('r')->leftJoin('r.category', 'c')->select('r.id', 'r.title', 'r.slug', 'c.name', 'r.thumbnail'),
             $page,
             $limit,
             [
